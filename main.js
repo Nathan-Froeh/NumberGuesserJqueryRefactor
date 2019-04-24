@@ -1,11 +1,16 @@
 
 //********BEGIN GLOBAL VARIABLES*******
 
+$(document).ready(() => {
+	// var buttonRangeUpdate = document.querySelector('.button--update-range');
+
+})
+
 var minRange = document.querySelector('.input--min-range');
 var maxRange = document.querySelector('.input--max-range');
 var minNumber = document.querySelector('.min-number');
 var maxNumber = document.querySelector('.max-number');
-var buttonRangeUpdate = document.querySelector('.button--update-range');
+// var buttonRangeUpdate = document.querySelector('.button--update-range');
 
 var randomNum;
 var p1NameInput  = document.querySelector('.input--p1-name');
@@ -28,7 +33,7 @@ var finishedGames = document.querySelector('.finished-games');
 
 //********BEGIN EVENT LISTENERS**********
 
-buttonRangeUpdate.addEventListener("click", rangeError);
+// buttonRangeUpdate.addEventListener("click", rangeError);
 buttonSubmitGuess.addEventListener("click", localVarMachine);
 
 //Clear button event listeners
@@ -51,9 +56,8 @@ maxRange.addEventListener('keyup', checkResetDisabled);
 
 //********BEGIN FUNCTIONS********
 
-//Input range error conditions
 
-function rangeError() {
+$('.button--update-range').on('click', () => {
 	var min = parseInt(minRange.value);
 	var max = parseInt(maxRange.value);
 	if (min >= max) {
@@ -61,7 +65,21 @@ function rangeError() {
 	} else if (isNaN(min) || isNaN(max)) {
 		alert('Min & Max Range Conflict');
 	} else {getRandom()};
-};
+})
+
+
+
+//Input range error conditions
+
+// function rangeError() {
+// 	var min = parseInt(minRange.value);
+// 	var max = parseInt(maxRange.value);
+// 	if (min >= max) {
+// 		alert('Min & Max Range Conflict');
+// 	} else if (isNaN(min) || isNaN(max)) {
+// 		alert('Min & Max Range Conflict');
+// 	} else {getRandom()};
+// };
 
 //Random number generator
 
