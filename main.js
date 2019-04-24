@@ -34,7 +34,7 @@ var finishedGames = document.querySelector('.finished-games');
 //********BEGIN EVENT LISTENERS**********
 
 // buttonRangeUpdate.addEventListener("click", rangeError);
-buttonSubmitGuess.addEventListener("click", localVarMachine);
+// buttonSubmitGuess.addEventListener("click", localVarMachine);
 
 //Clear button event listeners
 
@@ -95,7 +95,7 @@ function getRandom() {
 
 //Establish local variables
 
-function localVarMachine() {
+$('.button--submit-guess').on('click', () => {
 	var min = parseInt(minRange.value);
 	var max = parseInt(maxRange.value);
 	var g1 = parseInt(p1GuessInput.value);
@@ -103,7 +103,17 @@ function localVarMachine() {
 	var p1 = p1NameInput.value;
 	var p2 = p2NameInput.value;
 	nameError(min, max, g1, g2, p1, p2)
-};
+})
+
+// function localVarMachine() {
+// 	var min = parseInt(minRange.value);
+// 	var max = parseInt(maxRange.value);
+// 	var g1 = parseInt(p1GuessInput.value);
+// 	var g2 = parseInt(p2GuessInput.value);
+// 	var p1 = p1NameInput.value;
+// 	var p2 = p2NameInput.value;
+// 	nameError(min, max, g1, g2, p1, p2)
+// };
 
 //Name and guess error conditions
 
