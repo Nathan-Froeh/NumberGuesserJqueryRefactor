@@ -2,37 +2,15 @@
 //********BEGIN GLOBAL VARIABLES*******
 
 $(document).ready(() => {
-var minNumber = document.querySelector('.min-number');
-var maxNumber = document.querySelector('.max-number');
-
 var randomNum;
-// var p1NameInput  = document.querySelector('.input--p1-name');
-// var p2NameInput  = document.querySelector('.input--p2-name');
-var p1NameOutput  = document.querySelector('.output--p1-name');
-var p2NameOutput  = document.querySelector('.output--p2-name');
-
-var p1GuessInput  = document.querySelector('.input--p1-guess');
-var p2GuessInput  = document.querySelector('.input--p2-guess');
-var p1GuessOutput  = document.querySelector('.output--p1-guess');
-var p2GuessOutput  = document.querySelector('.output--p2-guess');
-
-var p1HiLo = document.querySelector('.p1-hi-lo');
-var p2HiLo = document.querySelector('.p2-hi-lo');
-var buttonClear = document.querySelector('.button--clear-game');
-var buttonReset = document.querySelector('.button--reset-game');
-
 var finishedGames = document.querySelector('.finished-games');
-
 //********BEGIN EVENT LISTENERS**********
-//Clear button event listeners
 
-$('.button--clear-game').on('click', clear)
+$('.button--clear-game').on('click', clear);
 $('.input--p1-name').on('keyup', checkClearDisabled);
 $('.input--p2-name').on('keyup', checkClearDisabled);  
 $('.input--p1-guess').on('keyup', checkClearDisabled);
 $('.input--p2-guess').on('keyup', checkClearDisabled);
-
-//Reset button event listeners
 
 $('.button--reset-game').on('click', reset); 
 $('.input--p1-name').on('keyup', checkResetDisabled);
@@ -41,7 +19,6 @@ $('.input--p1-guess').on('keyup', checkResetDisabled);
 $('.input--p2-guess').on('keyup', checkResetDisabled);
 $('.input--min-range').on('keyup', checkResetDisabled);
 $('.input--max-range').on('keyup', checkResetDisabled);
-
 
 //********BEGIN FUNCTIONS********
 
@@ -66,8 +43,8 @@ function getRandom() {
 	var min = Math.ceil(parseInt($('.input--min-range').val()));
  	var max = Math.floor(parseInt($('.input--max-range').val()));
  	randomNum = Math.floor(Math.random() * (max - min)) + min;
- 	minNumber.innerText = min;
- 	maxNumber.innerText = max;
+ 	$('.min-number').text(min);
+ 	$('.max-number').text(max);
  	console.log('randomNum' + randomNum);
  	return randomNum;
 };
@@ -77,8 +54,8 @@ function getRandom() {
 $('.button--submit-guess').on('click', () => {
 	var min = parseInt($('.input--min-range').val());
 	var max = parseInt($('.input--max-range').val());
-	var g1 = parseInt(p1GuessInput.value);
-	var g2 = parseInt(p2GuessInput.value);
+	var g1 = parseInt($('.input--p1-guess').val());
+	var g2 = parseInt($('.input--p2-guess').val());
 	var p1 = $('.input--p1-name').val();
 	var p2 = $('.input--p2-name').val();
 	nameError(min, max, g1, g2, p1, p2)
@@ -122,21 +99,21 @@ function maxError(min, max, g1, g2, p1, p2) {
 //Populates player name and guess
 
 function nameHandler(min, max, g1, g2, p1, p2) {
-	p1NameOutput.innerText = p1;
-	p2NameOutput.innerText = p2;
-	p1GuessOutput.innerText = g1;
-	p2GuessOutput.innerText = g2;
+	$('.output--p1-name').text(p1);
+	$('.output--p2-name').text(p2);
+	$('.output--p1-guess').text(g1);
+	$('.output--p2-guess').text(g2);
 };
 
 //Determins game winner
 
 function p1Guess(min, max, g1, g2, p1, p2) {
 	if (g1 < randomNum) {
-		p1HiLo.innerText = 'That\'s too low';
+		$('.p1-hi-lo').text('That\'s too low');
 	} else if (g1 > randomNum) {
-		p1HiLo.innerText = 'That\'s too high';
+		$('.p1-hi-lo').text('That\'s too high');
 	} else if (g1 == randomNum) {
-		p1HiLo.innerText = 'BOOM!';
+		$('.p1-hi-lo').text('BOOM!');
 		w1 = p1;
 		winnerStatement(min, max, g1, g2, p1, p2, w1);
 	};
@@ -144,11 +121,11 @@ function p1Guess(min, max, g1, g2, p1, p2) {
 
 function p2Guess(min, max, g1, g2, p1, p2, w1) {
 	if (g2 < randomNum) {
-	 	p2HiLo.innerText = 'That\'s too low';
+		$('.p2-hi-lo').text('That\'s too low');
 	} else if (g2 > randomNum) {
-	 	p2HiLo.innerText = 'That\'s too high';
+		$('.p2-hi-lo').text('That\'s too high');
 	} else if (g2 == randomNum) {
-	 	p2HiLo.innerText = 'BOOM!';
+		$('.p2-hi-lo').text('BOOM!');
 	 	w2 = p2;
 	 	winnerStatement(min, max, g1, g2, p1, p2, w1, w2);
 	};
@@ -178,55 +155,53 @@ function winReset(p1, p2, winner) {
 //Clear button disable functions
 
 function checkClearDisabled() {
-	if (buttonClear.disabled === true) {
+	if ($('.button--clear-game').is(':disabled') === true) {
 		clearDisable();
 	};
 };
 
 function clearDisable() { 
 	if ($('.input--p1-name').val() === '' &&
-	$('.input--p2-name').val() === '' &&
-		p1GuessInput.value === '' &&  
-		p2GuessInput.value === '') {
-		buttonClear.disabled = true;
+		$('.input--p2-name').val() === '' &&
+		$('.input--p1-guess').val() === '' &&  
+		$('.input--p2-guess').val() === '') {
+		$('.button--clear-game').prop('disabled', true);
 	} else {
-		buttonClear.disabled = false;
+		$('.button--clear-game').prop('disabled', false);
 	};
 };
 
 function clear() {
-	p1NameOutput.innerText = 'Challenger 1';
-	p2NameOutput.innerText = 'Challenger 2';
-	p1GuessOutput.innerText = 'Challenger 1 needs to guess';
-	p2GuessOutput.innerText = 'Challenger 2 needs to guess';
-	p1HiLo.innerText = '';
-	p2HiLo.innerText = '';
-	$('.input--p1-name').val() = '';
-	$('.input--p2-name').val() = '';
-	p1GuessInput.value = '';
-	p2GuessInput.value = '';
-	p1GuessOutput.innerText = '#';
-	p2GuessOutput.innerText = '#';
+	$('.output--p1-name').text('Challenger 1');
+	$('.output--p2-name').text('Challenger 2');
+	$('.output--p1-guess').text('#');
+	$('.output--p2-guess').text('#');
+	$('.p1-hi-lo').text('');
+	$('.p2-hi-lo').text('');
+	$('.input--p1-name').val('');
+	$('.input--p2-name').val('');
+	$('.input--p1-guess').val('');
+	$('.input--p2-guess').val('');
 };
 
 //Reset button disable functions
 
 function checkResetDisabled() {
-	if (buttonReset.disabled === true) {
+	if ($('.button--reset-game').is(':disabled') === true) {
 		resetDisable();
 	};
 };
 
 function resetDisable() { 
 	if ($('.input--p1-name').val() === '' &&
-	$('.input--p2-name').val() === '' &&
-		p1GuessInput.value === '' &&  
-		p2GuessInput.value === '' &&
-		parseInt($('.input--min-range').val()) === '' &&
-		parseInt($('.input--max-range').val()) === '') {
-		buttonReset.disabled = true;
+		$('.input--p2-name').val() === '' &&
+		$('.input--p1-guess').val() === '' &&  
+		$('.input--p2-guess').val() === '' &&
+		$('.input--min-range').val() === '' &&
+		$('.input--max-range').val() === '') {
+		$('.button--reset-game').prop('disabled', true);
 	} else {
-		buttonReset.disabled = false;
+		$('.button--reset-game').prop('disabled', false);
 	};
 };
 
