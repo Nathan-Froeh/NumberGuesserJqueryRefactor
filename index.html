@@ -1,0 +1,90 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="styles.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,700" rel="stylesheet">
+    <script type="text/javascript" src="main.js" async></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <header>
+      <h1>NUMBER<span class="header-small-text">GUESSER</span></h1>
+      <p class="header-text">ULTIMATE CHALLENGER EDITION</p>
+    </header>
+    <main>
+      <section class="current-game">
+        <!--                               Set Range Box -->
+        <div class="set-range-box">
+          <p class="set-range">Set Range</p>
+          <form class='ranges'>
+            <label for="min-range" class="label-min-range">Min Range</label>
+            <label for="max-range" class="label-max-range">Max Range</label>
+            <input class="input--min-range" type="number" name="min-range"/>
+            <input class="input--max-range" type="number" name="max-range"/>
+            <input class="button--update-range" type="button" value="UPDATE">
+          </form>
+          </form>
+        </div>
+        <!--                             Current Range Box -->
+        <div class="current-range-box">
+          <p class="current-range-text">The Current Range Is&nbsp;<span class="min-number">1</span>&nbsp;To&nbsp;<span class="max-number">&nbsp;100</span></p>
+          <form class="p1-info">
+            <p class="challenger-tag challenger-tag-p1">Challenger 1</p>           
+              <label for="p1-name" class="p1-name">Name</label>
+              <label for="p1-guess" class="p1-guess">Guess</label>
+              <input class="input--p1-name" type="text" name="p1-name"/>
+              <input class="input--p1-guess" type="number" name="p1-guess"/>
+          </form>
+          <form class="p2-info">
+            <p class="challenger-tag challenger-tag-p2">Challenger 2</p>
+            <label for="p2-name" class="p2-name">Name</label>
+            <label for="p2-guess" class="p2-guess">Guess</label>
+            <input class="input--p2-name" type="text" name="p2-name"/>
+            <input class="input--p2-guess" type="number" name="p2-guess"/>
+          </form>
+          <form class="range-buttons">
+            <input class="button--submit-guess" type="button" value="SUBMIT GUESS">
+            <input class="button--reset-game" type="button" value="RESET GAME" disabled>
+            <input class="button--clear-game" type="button" value="CLEAR GAME" disabled>
+          </form>
+        </div>
+        <!--                               Latest Score Box -->
+        <div class="latest-score-box">
+          <p class="score-header">Latest Score</p>
+            <div class="output--p1-response">
+              <span class="output--p1-name">Challenger 1 Name</span>
+              <p>current guess</p>
+              <span class="output--p1-guess">#</span>
+              <span class="p1-hi-lo">hilo</span>
+            </div>
+            <div class="output--p2-response">
+              <span class="output--p2-name">Challenger 2 Name</span>
+              <p>current guess</p>
+              <span class="output--p2-guess">#</span>
+              <span class="p2-hi-lo">hilo</span>
+            </div>   
+        </div>
+      </section>
+      <!--                                Finished Games Section -->
+      <section class="finished-games">
+        <!-- <div class="winner-box">
+          <div class="contestant-names">
+            <span class="output--p1-name">Challenger 1 Name</span>
+            <p>VS</p>
+            <span class="output--p2-name">Challenger 2 Name</span>
+          </div>
+          <div class="winner">
+            <span class="winner-name">Nathan</span>
+            <p class="winner-tag">WINNER</p>
+          </div>
+          <div class="game-stats">
+            <p><span class="guess-count">47</span> GUESSES</p>
+            <p><span class="game-timer">1.35</span> MINUTES</p>
+            <img src="close-button.png" alt="Close button" class="close-button"/>
+          </div>
+        </div> -->
+      </section>    
+    </main>
+    <footer>      
+    </footer>
+  </body>
+</html>
