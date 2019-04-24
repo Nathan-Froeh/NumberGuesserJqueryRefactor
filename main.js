@@ -6,8 +6,8 @@ var minNumber = document.querySelector('.min-number');
 var maxNumber = document.querySelector('.max-number');
 
 var randomNum;
-var p1NameInput  = document.querySelector('.input--p1-name');
-var p2NameInput  = document.querySelector('.input--p2-name');
+// var p1NameInput  = document.querySelector('.input--p1-name');
+// var p2NameInput  = document.querySelector('.input--p2-name');
 var p1NameOutput  = document.querySelector('.output--p1-name');
 var p2NameOutput  = document.querySelector('.output--p2-name');
 
@@ -79,8 +79,8 @@ $('.button--submit-guess').on('click', () => {
 	var max = parseInt($('.input--max-range').val());
 	var g1 = parseInt(p1GuessInput.value);
 	var g2 = parseInt(p2GuessInput.value);
-	var p1 = p1NameInput.value;
-	var p2 = p2NameInput.value;
+	var p1 = $('.input--p1-name').val();
+	var p2 = $('.input--p2-name').val();
 	nameError(min, max, g1, g2, p1, p2)
 })
 
@@ -88,7 +88,7 @@ $('.button--submit-guess').on('click', () => {
 //Name and guess error conditions
 
 function nameError(min, max, g1, g2, p1, p2) {
-	if (p1NameInput.value === '' || p2NameInput.value === '') {
+	if ($('.input--p1-name').val() === '' || $('.input--p2-name').val() === '') {
 		alert('Player Name Missing');
 	} else {
 		minError(min, max, g1, g2, p1, p2);
@@ -184,8 +184,8 @@ function checkClearDisabled() {
 };
 
 function clearDisable() { 
-	if (p1NameInput.value === '' &&
-		p2NameInput.value === '' &&
+	if ($('.input--p1-name').val() === '' &&
+	$('.input--p2-name').val() === '' &&
 		p1GuessInput.value === '' &&  
 		p2GuessInput.value === '') {
 		buttonClear.disabled = true;
@@ -201,8 +201,8 @@ function clear() {
 	p2GuessOutput.innerText = 'Challenger 2 needs to guess';
 	p1HiLo.innerText = '';
 	p2HiLo.innerText = '';
-	p1NameInput.value = '';
-	p2NameInput.value = '';
+	$('.input--p1-name').val() = '';
+	$('.input--p2-name').val() = '';
 	p1GuessInput.value = '';
 	p2GuessInput.value = '';
 	p1GuessOutput.innerText = '#';
@@ -218,8 +218,8 @@ function checkResetDisabled() {
 };
 
 function resetDisable() { 
-	if (p1NameInput.value === '' &&
-		p2NameInput.value === '' &&
+	if ($('.input--p1-name').val() === '' &&
+	$('.input--p2-name').val() === '' &&
 		p1GuessInput.value === '' &&  
 		p2GuessInput.value === '' &&
 		parseInt($('.input--min-range').val()) === '' &&
