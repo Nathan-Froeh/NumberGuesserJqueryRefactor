@@ -2,22 +2,14 @@
 //********BEGIN GLOBAL VARIABLES*******
 
 $(document).ready(() => {
-	// var buttonRangeUpdate = document.querySelector('.button--update-range');
-
-})
-
-var minRange = document.querySelector('.input--min-range');
-var maxRange = document.querySelector('.input--max-range');
 var minNumber = document.querySelector('.min-number');
 var maxNumber = document.querySelector('.max-number');
-// var buttonRangeUpdate = document.querySelector('.button--update-range');
 
 var randomNum;
 var p1NameInput  = document.querySelector('.input--p1-name');
 var p2NameInput  = document.querySelector('.input--p2-name');
 var p1NameOutput  = document.querySelector('.output--p1-name');
 var p2NameOutput  = document.querySelector('.output--p2-name');
-var buttonSubmitGuess = document.querySelector('.button--submit-guess');
 
 var p1GuessInput  = document.querySelector('.input--p1-guess');
 var p2GuessInput  = document.querySelector('.input--p2-guess');
@@ -32,34 +24,31 @@ var buttonReset = document.querySelector('.button--reset-game');
 var finishedGames = document.querySelector('.finished-games');
 
 //********BEGIN EVENT LISTENERS**********
-
-// buttonRangeUpdate.addEventListener("click", rangeError);
-// buttonSubmitGuess.addEventListener("click", localVarMachine);
-
 //Clear button event listeners
 
-buttonClear.addEventListener('click', clear)
-p1NameInput.addEventListener('keyup', checkClearDisabled);
-p2NameInput.addEventListener('keyup', checkClearDisabled);  
-p1GuessInput.addEventListener('keyup', checkClearDisabled);
-p2GuessInput.addEventListener('keyup', checkClearDisabled);
+$('.button--clear-game').on('click', clear)
+$('.input--p1-name').on('keyup', checkClearDisabled);
+$('.input--p2-name').on('keyup', checkClearDisabled);  
+$('.input--p1-guess').on('keyup', checkClearDisabled);
+$('.input--p2-guess').on('keyup', checkClearDisabled);
 
 //Reset button event listeners
 
-buttonReset.addEventListener('click', reset); 
-p1NameInput.addEventListener('keyup', checkResetDisabled);
-p2NameInput.addEventListener('keyup', checkResetDisabled);  
-p1GuessInput.addEventListener('keyup', checkResetDisabled);
-p2GuessInput.addEventListener('keyup', checkResetDisabled);
-minRange.addEventListener('keyup', checkResetDisabled);
-maxRange.addEventListener('keyup', checkResetDisabled);
+$('.button--reset-game').on('click', reset); 
+$('.input--p1-name').on('keyup', checkResetDisabled);
+$('.input--p2-name').on('keyup', checkResetDisabled);  
+$('.input--p1-guess').on('keyup', checkResetDisabled);
+$('.input--p2-guess').on('keyup', checkResetDisabled);
+$('.input--min-range').on('keyup', checkResetDisabled);
+$('.input--max-range').on('keyup', checkResetDisabled);
+
 
 //********BEGIN FUNCTIONS********
 
 
 $('.button--update-range').on('click', () => {
-	var min = parseInt(minRange.value);
-	var max = parseInt(maxRange.value);
+	var min = parseInt($('.input--min-range').val());
+	var max = parseInt($('.input--max-range').val());
 	if (min >= max) {
 		alert('Min & Max Range Conflict');
 	} else if (isNaN(min) || isNaN(max)) {
@@ -71,21 +60,11 @@ $('.button--update-range').on('click', () => {
 
 //Input range error conditions
 
-// function rangeError() {
-// 	var min = parseInt(minRange.value);
-// 	var max = parseInt(maxRange.value);
-// 	if (min >= max) {
-// 		alert('Min & Max Range Conflict');
-// 	} else if (isNaN(min) || isNaN(max)) {
-// 		alert('Min & Max Range Conflict');
-// 	} else {getRandom()};
-// };
-
 //Random number generator
 
 function getRandom() {
-	var min = Math.ceil(parseInt(minRange.value));
- 	var max = Math.floor(parseInt(maxRange.value));
+	var min = Math.ceil(parseInt($('.input--min-range').val()));
+ 	var max = Math.floor(parseInt($('.input--max-range').val()));
  	randomNum = Math.floor(Math.random() * (max - min)) + min;
  	minNumber.innerText = min;
  	maxNumber.innerText = max;
@@ -96,8 +75,8 @@ function getRandom() {
 //Establish local variables
 
 $('.button--submit-guess').on('click', () => {
-	var min = parseInt(minRange.value);
-	var max = parseInt(maxRange.value);
+	var min = parseInt($('.input--min-range').val());
+	var max = parseInt($('.input--max-range').val());
 	var g1 = parseInt(p1GuessInput.value);
 	var g2 = parseInt(p2GuessInput.value);
 	var p1 = p1NameInput.value;
@@ -105,15 +84,6 @@ $('.button--submit-guess').on('click', () => {
 	nameError(min, max, g1, g2, p1, p2)
 })
 
-// function localVarMachine() {
-// 	var min = parseInt(minRange.value);
-// 	var max = parseInt(maxRange.value);
-// 	var g1 = parseInt(p1GuessInput.value);
-// 	var g2 = parseInt(p2GuessInput.value);
-// 	var p1 = p1NameInput.value;
-// 	var p2 = p2NameInput.value;
-// 	nameError(min, max, g1, g2, p1, p2)
-// };
 
 //Name and guess error conditions
 
@@ -252,8 +222,8 @@ function resetDisable() {
 		p2NameInput.value === '' &&
 		p1GuessInput.value === '' &&  
 		p2GuessInput.value === '' &&
-		minRange.value === '' &&
-		maxRange.value === '') {
+		parseInt($('.input--min-range').val()) === '' &&
+		parseInt($('.input--max-range').val()) === '') {
 		buttonReset.disabled = true;
 	} else {
 		buttonReset.disabled = false;
@@ -261,8 +231,8 @@ function resetDisable() {
 };
 
 function reset() {
-	minRange.value = '1';
-	maxRange.value = '100';
+	$('.input--min-range').val('1');
+	$('.input--max-range').val('100');
 	getRandom();
 	clear();
 };
@@ -291,6 +261,7 @@ function genCard(p1, p2, winner) {
   finishedGames.insertAdjacentHTML('afterBegin', winnerBox);
 };
 
+});
 //*********** NO CODE BELOW THIS LINE********
 
 //Notes!!
