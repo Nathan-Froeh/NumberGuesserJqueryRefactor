@@ -23,7 +23,9 @@ $(document).ready(() => {
       alert('Min & Max Range Conflict');
     } else if (isNaN(min) || isNaN(max)) {
       alert('Min & Max Range Conflict');
-    } else {getRandom()};
+    } else {
+      getRandom();
+    }
   });
 
   function getRandom() {
