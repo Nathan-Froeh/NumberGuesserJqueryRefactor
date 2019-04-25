@@ -1,17 +1,26 @@
 module.exports = {
-  'env': {
-    'browser': true,
-    'es6': true
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "mocha": true
   },
-  'extends': 'standard',
-  'globals': {
-    'Atomics': 'readonly',
-    'SharedArrayBuffer': 'readonly'
-  },
-  'parserOptions': {
-    'ecmaVersion': 2018,
-    'sourceType': 'module'
-  },
-  'rules': {
+  "extends": "eslint:recommended",
+  "parserOptions": { "sourceType": "module" },
+  "rules": {
+    "eqeqeq": ["error", "always"],
+    "brace-style": "error",
+    "comma-spacing": ["warn", { "before": false, "after": true }],
+    "curly": "error",
+    "semi-spacing": ["error", { "before": false, "after": true }],
+    "indent": ["warn", 2],
+    "key-spacing": ["error", { "beforeColon": false, "afterColon": true }],
+    "keyword-spacing": ["error", { "before": true, "after": true }],
+    "linebreak-style": ["error", "unix"],
+    "max-len": ["warn", 80],
+    "new-cap": ["error", { "newIsCap": true }],
+    "object-shorthand": ["error", "always"],
+    "space-before-blocks": ["error", { "functions": "always", "keywords": "always", "classes": "always" }],
+    "space-infix-ops": ["error", { "int32Hint": false }]
   }
 }
